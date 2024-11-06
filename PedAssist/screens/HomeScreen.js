@@ -16,8 +16,9 @@ export default function HomeScreen({ navigation, route }) {
           source={require('../assets/blood.png')} // Logo image
           style={styles.logo} 
         />
-
         <Text style={styles.title}>Welcome, {userName}!</Text> {/* Display the username */}
+
+        <Text style={styles.chooseModeText}>Choose a Mode</Text>
 
         {/* Custom Button for Video Tutorial */}
         <TouchableOpacity 
@@ -26,8 +27,6 @@ export default function HomeScreen({ navigation, route }) {
         >
           <Text style={styles.buttonText}>Video Tutorial</Text>
         </TouchableOpacity>
-
-        <Text style={styles.chooseModeText}>Choose a Mode</Text>
 
         {/* Walkthrough Mode Button */}
         <TouchableOpacity 

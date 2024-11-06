@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Image, ImageBackground, TouchableOpacity } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
-  // State to hold the username input
+  console.log("LoginScreen is rendering"); // Log to check if screen renders
+
   const [username, setUsername] = useState('');
 
   return (
@@ -10,11 +11,13 @@ export default function LoginScreen({ navigation }) {
       source={require('../assets/BG.png')} 
       style={styles.background}
       resizeMode="cover"
+      onError={(error) => console.log("Error loading background image:", error)} // Error handling for background image
     >
       <View style={styles.container}>
         <Image 
           source={require('../assets/PedAssist Logo.png')} 
           style={styles.logo} 
+          onError={(error) => console.log("Error loading logo image:", error)} // Error handling for logo image
         />
         <Text style={styles.title}>Get Started!</Text>
         
@@ -23,8 +26,8 @@ export default function LoginScreen({ navigation }) {
           style={styles.input} 
           placeholder="Username" 
           placeholderTextColor="gray" 
-          value={username} // Set the value of the username input
-          onChangeText={setUsername} // Update the state on change
+          value={username}
+          onChangeText={setUsername}
         />
         
         <TextInput 
@@ -41,14 +44,20 @@ export default function LoginScreen({ navigation }) {
 
         <TouchableOpacity 
           style={styles.button} 
-          onPress={() => navigation.navigate('Home', { userName: username })} // Pass the username to the Home screen
+          onPress={() => {
+            console.log("Navigating to Home with username:", username); // Log navigation action
+            navigation.navigate('Home', { userName: username });
+          }}
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.button} 
-          onPress={() => navigation.navigate('Sign Up')}
+          onPress={() => {
+            console.log("Navigating to Sign Up"); // Log navigation action
+            navigation.navigate('Sign Up');
+          }}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 24, 
     fontWeight: 'bold', 
     color: '#c95555', 
-    marginBottom: 20 
+    marginBottom: 0 
   },
   input: { 
     width: '100%', 
